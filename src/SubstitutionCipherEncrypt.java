@@ -7,7 +7,11 @@ public class SubstitutionCipherEncrypt extends EncryptAlgorithm {
 
 	@Override
 	public String encrypt(String message) {
-		return new SubstitutionCipher(key).encode(message);
+		StringBuilder sb = new StringBuilder(message.length());
+		for (char c : message.toCharArray())
+			sb.append(key.charAt((int) c - 32));
+
+		return sb.toString();
 	}
 
 	@Override

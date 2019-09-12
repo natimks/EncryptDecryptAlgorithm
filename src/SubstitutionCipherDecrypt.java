@@ -7,7 +7,12 @@ public class SubstitutionCipherDecrypt extends DecryptAlgorithm {
 
 	@Override
 	public String decrypt(String message) {
-		return new SubstitutionCipher(key).decode(message);
+		StringBuilder sb = new StringBuilder(message.length());
+
+		for (char c : message.toCharArray())
+			sb.append((char) (key.indexOf((int) c) + 32));
+
+		return sb.toString().toUpperCase();
 	}
 
 	@Override
